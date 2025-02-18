@@ -1,3 +1,23 @@
+<?php
+require '../config.php';
+
+$professeurs = $pdo->query("SELECT * FROM professeurs")->fetchAll();
+$salles = $pdo->query("SELECT * FROM salles")->fetchAll();
+
+$filtre_prof = $pdo->query("SELECT * FROM professeurs")->fetchAll();
+$filtre_salle = $pdo->query("SELECT * FROM salles")->fetchAll();
+
+$emplois = "SELECT e.id, p.nom AS prof_nom, el.nom AS element_nom, s.nom AS salle_nom, 
+e.jour, c.heure_debut, c.heure_fin, 
+m.code AS code_module, f.nom AS nom_filiere
+FROM emplois_du_temps e
+JOIN professeurs p ON e.prof_id = p.id
+JOIN elements el ON e.element_id = el.id
+JOIN salles s ON e.salle_id = s.id
+JOIN creneaux c ON e.creneau_id = c.id
+JOIN modules m ON e.module_id = m.id
+JOIN filiere f ON e.filiere_id = f.id";
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,7 +40,7 @@
                     <option value="">-- Tous --</option>
                     <?php foreach ($professeurs as $prof): ?>
                         <option value="<?= $prof['id'] ?>" <?= ($filtre_prof == $prof['id']) ? 'selected' : '' ?>>
-                            <?= $prof['nom'] ?>
+                            <?= $prof['nom'] ," ", $prof['prenom'] ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -61,6 +81,8 @@
                 <thead class="table-dark">
                     <tr>
                         <th>Professeur</th>
+                        <th>Filière</th>
+                        <th>Module</th>
                         <th>Élément</th>
                         <th>Salle</th>
                         <th>Jour</th>
@@ -69,9 +91,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $emplois = []; foreach ($emplois as $emploi): ?>
+                    <?php $emplois = [];
+                    foreach ($emplois as $emploi): ?>
                         <tr>
                             <td><?= $emploi['prof_nom'] ?></td>
+                            <td><?= $emploi['nom_filiere'] ?></td>
+                            <td><?= $emploi['code_module'] ?></td>
                             <td><?= $emploi['element_nom'] ?></td>
                             <td><?= $emploi['salle_nom'] ?></td>
                             <td><?= $emploi['jour'] ?></td>

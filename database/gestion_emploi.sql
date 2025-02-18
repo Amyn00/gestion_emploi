@@ -6,8 +6,22 @@ CREATE TABLE professeurs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL,
     prenom VARCHAR(100) NOT NULL,
-    email VARCHAR(150) UNIQUE NOT NULL,
-    telephone VARCHAR(20) UNIQUE
+    email VARCHAR(150)  NOT NULL,
+    telephone VARCHAR(20)
+);
+
+-- Table de Departement
+CREATE TABLE departement (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL
+);
+
+-- Table des Filiere
+CREATE TABLE filiere (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(255) NOT NULL,
+    departement_id INT,
+    FOREIGN KEY (departement_id) REFERENCES departement(id) ON DELETE SET NULL
 );
 
 -- Table des modules
@@ -92,3 +106,12 @@ INSERT INTO semaines (semaine) VALUES
 ('6'), ('7'), ('8'), ('9'), ('10'), 
 ('11'), ('12'), ('13'), ('14'), ('15'),
 ('16'), ('17'), ('18'), ('19'), ('20');
+
+ALTER TABLE modules ADD COLUMN filiere_id INT;
+ALTER TABLE modules ADD FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE SET NULL;
+
+ALTER TABLE emplois_du_temps ADD COLUMN module_id INT;
+ALTER TABLE emplois_du_temps ADD FOREIGN KEY (module_id) REFERENCES module(id) ON DELETE CASCADE;
+
+ALTER TABLE emplois_du_temps ADD COLUMN filiere_id INT;
+ALTER TABLE emplois_du_temps ADD FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE CASCADE;

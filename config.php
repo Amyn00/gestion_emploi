@@ -1,15 +1,13 @@
 <?php
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'gestion_emploi');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+session_start(); // Démarrer la session
 
-try {
-    $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
-}
+// Inclusion du fichier de connexion à la base de données
+require_once __DIR__ . '/db.php';
+
+// Configuration générale
+define("SITE_NAME", "Gestion des Emplois du Temps");
+define("BASE_URL", "http://localhost/gestion_emploi");
+
+// Définir le fuseau horaire
+date_default_timezone_set("Africa/Casablanca");
 ?>
