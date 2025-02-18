@@ -1,5 +1,5 @@
-CREATE DATABASE gestion_emplois;
-USE gestion_emplois;
+CREATE DATABASE gestion_emploi;
+USE gestion_emploi;
 
 -- Table des professeurs
 CREATE TABLE professeurs (
