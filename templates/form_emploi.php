@@ -5,7 +5,7 @@ $elements = $pdo->query("SELECT * FROM elements")->fetchAll();
 $salles = $pdo->query("SELECT * FROM salles")->fetchAll();
 $creneaux = $pdo->query("SELECT * FROM creneaux")->fetchAll();
 $semaines = $pdo->query("SELECT * FROM semaines")->fetchAll();
-$modules = $pdo->query("SELECT id, code FROM modules")->fetchAll();
+$modules = $pdo->query("SELECT * FROM modules")->fetchAll();
 $filieres = $pdo->query("SELECT * FROM filiere")->fetchAll();
 ?>
 

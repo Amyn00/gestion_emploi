@@ -14,8 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_POST['semaine_debut_id'],
         $_POST['semaine_fin_id'],
         $_POST['creneau_id'],
-        $_POST['$module_id'],
-        $_POST['$filiere_id']
+        $_POST['module_id'],
+        $_POST['filiere_id']
     ]);
 
     header("Location: ../pages/emplois_du_temps.php");

@@ -7,16 +7,25 @@ $salles = $pdo->query("SELECT * FROM salles")->fetchAll();
 $filtre_prof = $pdo->query("SELECT * FROM professeurs")->fetchAll();
 $filtre_salle = $pdo->query("SELECT * FROM salles")->fetchAll();
 
-$emplois = "SELECT e.id, p.nom AS prof_nom, el.nom AS element_nom, s.nom AS salle_nom, 
-e.jour, c.heure_debut, c.heure_fin, 
-m.code AS code_module, f.nom AS nom_filiere
+$emplois = $pdo->query("SELECT 
+e.id, 
+p.nom AS prof_nom,
+p.prenom AS prof_prenom,
+f.nom AS nom_filiere,
+m.code AS code_module, 
+el.nom AS element_nom,  
+e.jour, 
+c.heure_debut, c.heure_fin,
+e.semaine_debut_id AS semaine_debut,
+e.semaine_fin_id AS semaine_fin,
+s.nom AS salle
 FROM emplois_du_temps e
 JOIN professeurs p ON e.prof_id = p.id
 JOIN elements el ON e.element_id = el.id
 JOIN salles s ON e.salle_id = s.id
 JOIN creneaux c ON e.creneau_id = c.id
 JOIN modules m ON e.module_id = m.id
-JOIN filiere f ON e.filiere_id = f.id";
+JOIN filiere f ON e.filiere_id = f.id")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -82,25 +91,27 @@ JOIN filiere f ON e.filiere_id = f.id";
                     <tr>
                         <th>Professeur</th>
                         <th>Filière</th>
-                        <th>Module</th>
+                        <th>Code Module</th>
                         <th>Élément</th>
-                        <th>Salle</th>
                         <th>Jour</th>
                         <th>Créneau</th>
+                        <th>Semaine</th>
+                        <th>Salle</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $emplois = [];
+                    <?php //$emplois = [];
                     foreach ($emplois as $emploi): ?>
                         <tr>
-                            <td><?= $emploi['prof_nom'] ?></td>
+                            <td><?= $emploi['prof_nom'] ?> <?= $emploi['prof_prenom'] ?></td>
                             <td><?= $emploi['nom_filiere'] ?></td>
                             <td><?= $emploi['code_module'] ?></td>
                             <td><?= $emploi['element_nom'] ?></td>
-                            <td><?= $emploi['salle_nom'] ?></td>
                             <td><?= $emploi['jour'] ?></td>
                             <td><?= $emploi['heure_debut'] ?> - <?= $emploi['heure_fin'] ?></td>
+                            <td><?= $emploi['semaine_debut'] ?> - <?= $emploi['semaine_fin'] ?></td>
+                            <td><?= $emploi['salle'] ?></td>
                             <td>
                                 <a href="edit_emploi.php?id=<?= $emploi['id'] ?>" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i>

@@ -59,11 +59,11 @@ CREATE TABLE `departement` (
 --
 
 INSERT INTO `departement` (`id`, `nom`) VALUES
-(1, 'G?nie ?lectrique et informatique'),
-(2, 'G?nie Industriel'),
-(3, 'Sciences de Donn?es et Syst?mes Communicants'),
-(4, 'G?nie des syst?mes intelligents '),
-(5, 'Cycle pr?paratoires');
+(1, 'Genie electrique et informatique'),
+(2, 'Genie Industriel'),
+(3, 'Sciences de Donn?es et Systemes Communicants'),
+(4, 'Genie des systemes intelligents '),
+(5, 'Cycle preparatoires');
 
 -- --------------------------------------------------------
 
@@ -293,8 +293,8 @@ INSERT INTO `salles` (`id`, `nom`, `capacite`) VALUES
 (29, '2.11', 51),
 (30, '2.12', 51),
 (31, '2.13', 51),
-(32, 'ATELIER M?canique', 0),
-(33, 'ATELIER El?ctrotechnique', 0),
+(32, 'ATELIER Mecanique', 0),
+(33, 'ATELIER Electrotechnique', 0),
 (34, 'Atelier Automatique et Instrumentation', 0),
 (35, 'Atelier API', 0),
 (36, 'Atelier Reseaux', 0),
@@ -411,7 +411,6 @@ ALTER TABLE `filiere`
 --
 ALTER TABLE `modules`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `code` (`code`),
   ADD KEY `filiere_id` (`filiere_id`);
 
 --
