@@ -1,41 +1,14 @@
+</html>
 <?php
 require '../config.php';
 
-// Nombre de résultats par page
-$resultsPerPage = 10;
-
-// Récupérer tous les professeurs et salles pour les filtres
 $professeurs = $pdo->query("SELECT * FROM professeurs")->fetchAll();
 $salles = $pdo->query("SELECT * FROM salles")->fetchAll();
 
-// Filtres pour les professeurs et les salles
 $filtre_prof = $pdo->query("SELECT * FROM professeurs")->fetchAll();
 $filtre_salle = $pdo->query("SELECT * FROM salles")->fetchAll();
 
-// Compter le nombre total d'emplois du temps
-$queryCount = "SELECT COUNT(*) AS total FROM emplois_du_temps e
-JOIN professeurs p ON e.prof_id = p.id
-JOIN elements el ON e.element_id = el.id
-JOIN salles s ON e.salle_id = s.id
-JOIN creneaux c ON e.creneau_id = c.id
-JOIN modules m ON e.module_id = m.id
-JOIN filiere f ON e.filiere_id = f.id";
-$resultCount = $pdo->query($queryCount);
-$row = $resultCount->fetch();
-$totalResults = $row['total'];
-
-// Calcul du nombre total de pages
-$totalPages = ceil($totalResults / $resultsPerPage);
-
-// Récupérer la page actuelle
-$currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-$currentPage = max(1, min($currentPage, $totalPages));
-
-// Calculer l'offset
-$offset = ($currentPage - 1) * $resultsPerPage;
-
-// Récupérer les emplois du temps avec la pagination
-$queryEmplois = "SELECT 
+$emplois = $pdo->query("SELECT 
 e.id, 
 p.nom AS prof_nom,
 p.prenom AS prof_prenom,
@@ -53,10 +26,7 @@ JOIN elements el ON e.element_id = el.id
 JOIN salles s ON e.salle_id = s.id
 JOIN creneaux c ON e.creneau_id = c.id
 JOIN modules m ON e.module_id = m.id
-JOIN filiere f ON e.filiere_id = f.id
-LIMIT $resultsPerPage OFFSET $offset";
-
-$emplois = $pdo->query($queryEmplois)->fetchAll();
+JOIN filiere f ON e.filiere_id = f.id")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -80,7 +50,7 @@ $emplois = $pdo->query($queryEmplois)->fetchAll();
                     <option value="">-- Tous --</option>
                     <?php foreach ($professeurs as $prof): ?>
                         <option value="<?= $prof['id'] ?>" <?= ($filtre_prof == $prof['id']) ? 'selected' : '' ?>>
-                            <?= $prof['nom'], " ", $prof['prenom'] ?>
+                            <?= $prof['nom'] ," ", $prof['prenom'] ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -117,7 +87,6 @@ $emplois = $pdo->query($queryEmplois)->fetchAll();
 
         <h2 class="text-center mt-4" data-aos="fade-up">Liste des emplois du temps</h2>
         <div class="table-responsive" data-aos="fade-up" data-aos-delay="200">
-            <!-- Tableau des emplois du temps -->
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
                     <tr>
@@ -133,9 +102,10 @@ $emplois = $pdo->query($queryEmplois)->fetchAll();
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($emplois as $emploi): ?>
+                    <?php //$emplois = [];
+                    foreach ($emplois as $emploi): ?>
                         <tr>
-                            <td><?= $emploi['prof_nom'] ?>     <?= $emploi['prof_prenom'] ?></td>
+                            <td><?= $emploi['prof_nom'] ?> <?= $emploi['prof_prenom'] ?></td>
                             <td><?= $emploi['nom_filiere'] ?></td>
                             <td><?= $emploi['code_module'] ?></td>
                             <td><?= $emploi['element_nom'] ?></td>
@@ -156,37 +126,6 @@ $emplois = $pdo->query($queryEmplois)->fetchAll();
                     <?php endforeach; ?>
                 </tbody>
             </table>
-
-            <!-- Pagination -->
-            <div class="pagination">
-                <ul class="pagination justify-content-center">
-                    <?php if ($currentPage > 1): ?>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=1">
-                                <<< /a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=<?= $currentPage - 1 ?>">
-                                << /a>
-                        </li>
-                    <?php endif; ?>
-
-                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <li class="page-item <?= ($i == $currentPage) ? 'active' : '' ?>">
-                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                        </li>
-                    <?php endfor; ?>
-
-                    <?php if ($currentPage < $totalPages): ?>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=<?= $currentPage + 1 ?>">></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="?page=<?= $totalPages ?>">>></a>
-                        </li>
-                    <?php endif; ?>
-                </ul>
-            </div>
         </div>
 
         <div class="text-center mt-4" data-aos="fade-up" data-aos-delay="400">
@@ -205,3 +144,5 @@ $emplois = $pdo->query($queryEmplois)->fetchAll();
         AOS.init();
     </script>
 </body>
+
+</html>
