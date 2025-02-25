@@ -24,7 +24,7 @@ CREATE TABLE filiere (
     abrv VARCHAR(7) NOT NULL,
     departement_id INT,
     prof_id INT,
-    FOREIGN KEY (prof_id) REFERENCES professeurs(id) ON DELETE SET NULL
+    FOREIGN KEY (prof_id) REFERENCES professeurs(id) ON DELETE SET NULL,
     FOREIGN KEY (departement_id) REFERENCES departement(id) ON DELETE SET NULL
 );
 
@@ -43,8 +43,8 @@ CREATE TABLE modules (
     nom VARCHAR(150) NOT NULL,
     code VARCHAR(50) UNIQUE NOT NULL,
     filiere_id INT,
-    semestre_id INT
-    FOREIGN KEY (semestre_id) REFERENCES semestres(id) ON DELETE CASCADE
+    semestre_id INT,
+    FOREIGN KEY (semestre_id) REFERENCES semestres(id) ON DELETE CASCADE,
     FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE SET NULL
 );
 
@@ -113,6 +113,8 @@ CREATE TABLE emplois_du_temps (
     semaine_fin_id INT,
     creneau_id INT,
     group_id INT,
+    semestre_id INT,
+    FOREIGN KEY (semestre_id) REFERENCES semestres(id) ON DELETE CASCADE,
     FOREIGN KEY (prof_id) REFERENCES professeurs(id) ON DELETE SET NULL,
     FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE,
     FOREIGN KEY (element_id) REFERENCES elements(id) ON DELETE CASCADE,
@@ -256,9 +258,9 @@ INSERT INTO filiere (nom, abrv, departement_id, prof_id) VALUES
 ('3ème année Cycle Ingénieur - Filière Ingénierie des Systèmes Embarqués et Intelligence Artificielle','ISEIA-3', 4, 22),
 ('3ème année Cycle Ingénieur - Filière Ingénierie Logicielle et Intelligence Artificielle', 'ILIA-3',4, 9),
 
-('1ère année Cycle préparatoire SECTION A','CP1-SA', 5, 31);
-('1ère année Cycle préparatoire SECTION B','CP1-SB', 5, 31);
-('1ère année Cycle préparatoire SECTION C','CP1-SC', 5, 31);
+('1ère année Cycle préparatoire SECTION A','CP1-SA', 5, 31),
+('1ère année Cycle préparatoire SECTION B','CP1-SB', 5, 31),
+('1ère année Cycle préparatoire SECTION C','CP1-SC', 5, 31),
 ('2ème année Cycle préparatoire','CP2', 5, 31);
 
 INSERT INTO semestres (nom, annee, filiere_id) VALUES
@@ -301,7 +303,7 @@ INSERT INTO semestres (nom, annee, filiere_id) VALUES
 ('S1', 1, 34), ('S2', 1, 23),
 ('S1', 1, 35), ('S2', 1, 24),
 ('S1', 1, 36), ('S2', 1, 25),
-('S3', 2, 37), ('S4', 2, 26),
+('S3', 2, 37), ('S4', 2, 26);
 
 INSERT INTO departement(nom,abrv,prof_id)VALUES
 ('Génie électrique et informatique','GEI'),
