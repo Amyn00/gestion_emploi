@@ -15,5 +15,4 @@
         </nav>
     </div>
 
-    <!-- Contenu principal -->
-    <div class="content p-4 w-100">
+

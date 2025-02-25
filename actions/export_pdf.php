@@ -3,7 +3,7 @@ require '../config.php';
 require '../tcpdf/tcpdf.php';
 
 // Charger le logo
-$logoPath = realpath('images/logo.png');
+$logoPath = realpath('../assets/logo.png');
 $logoExists = $logoPath && file_exists($logoPath);
 
 // Récupérer les données de l'emploi du temps
@@ -35,7 +35,7 @@ $emplois_table = [];
 foreach ($emplois as $emploi) {
     $emplois_table[$emploi['nom_filiere']][$emploi['jour']][$emploi['heure_debut']] = 
         "{$emploi['code_module']} : {$emploi['element_nom']}\n".
-        "S{$emploi['semaine_debut']} - S{$emploi['semaine_fin']}\n".
+        "SE{$emploi['semaine_debut']}-SE{$emploi['semaine_fin']}\n".
         "{$emploi['salle']}\n".
         "{$emploi['prof_nom']} {$emploi['prof_prenom']}";
 }

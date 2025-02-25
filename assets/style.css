@@ -1,46 +1,66 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Prend toute la hauteur de la page */
+}
+
+.container {
+    flex: 1; /* Permet au contenu de s'étendre pour pousser le footer en bas */
+}
+
+.footer {
+    background: #212529;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
 /* Styles des cartes statistiques */
-.card {
+/* .card {
     border-radius: 10px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
-}
+} */
 
-.card:hover {
+/* .card:hover {
     transform: translateY(-5px);
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-}
+} */
 
 /* Icônes */
-.card i {
+/* .card i {
     padding: 10px;
     border-radius: 50%;
     background: rgba(0, 123, 255, 0.1);
-}
+} */
 
 /* Responsive */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .container {
         text-align: center;
     }
-}
+} */
 
 
 /* Logo */
 .logo {
-    width: 520px;
+    width: 700px;
 }
 
 /* Sidebar */
-/* .sidebar {
+.sidebar {
     width: 250px;
     height: 100vh;
-    position: fixed;
+    /* position: fixed; */
     left: 0;
     top: 0;
     overflow-y: auto;
-} */
+}
 
 .sidebar .nav-link {
     padding: 10px;
@@ -52,9 +72,9 @@
 }
 
 /* Contenu principal */
-.content {
+/* .content {
     margin-left: 260px;
-}
+} */
 
 /* Assurer que le corps de la page prend toute la hauteur */
 html, body {
@@ -66,27 +86,27 @@ html, body {
 
 /* Logo centré */
 .logo {
-    height: 50px;
+    height: 100px;
 }
 
 /* Sidebar */
-.sidebar {
+/* .sidebar {
     width: 250px;
     min-height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     overflow-y: auto;
-}
+} */
 
 /* Contenu principal pour éviter d'être caché par la sidebar */
-.content {
+/* .content {
     margin-left: 260px;
     flex: 1;
-}
+} */
 
 /* Footer en bas de la page */
-.footer {
+/* .footer {
     width: 100%;
     bottom: 0;
-}
+} */
