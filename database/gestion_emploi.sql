@@ -14,7 +14,7 @@ CREATE TABLE professeurs (
 CREATE TABLE departement (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(255) NOT NULL,
-    abrv VARCHAR(7) NOT NULL,
+    abrv VARCHAR(7) NOT NULL
 );
 
 -- Table des Filiere
@@ -29,13 +29,13 @@ CREATE TABLE filiere (
 );
 
 -- Table des Semetres
-CREATE TABLE semestres (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(10) NOT NULL,
-    annee INT NOT NULL,
-    filiere_id INT,
-    FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE CASCADE
-);
+-- CREATE TABLE semestres (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     nom VARCHAR(10) NOT NULL,
+--     annee INT NOT NULL,
+--     filiere_id INT,
+--     FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE CASCADE
+-- );
 
 -- Table des modules
 CREATE TABLE modules (
@@ -57,10 +57,10 @@ CREATE TABLE elements (
 );
 
 -- Table des groupe repartie pour Les TPs et TD
-CREATE TABLE groupes (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    label VARCHAR(150) NOT NULL
-);
+-- CREATE TABLE groupes (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     label VARCHAR(150) NOT NULL
+-- );
 
 -- Table des salles avec équipements
 CREATE TABLE salles (
@@ -94,10 +94,10 @@ CREATE TABLE creneaux (
 );
 
 -- Table des semaines (stocke "semaine 1" à "semaine 20")
-CREATE TABLE semaines (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    semaine INT NOT NULL UNIQUE
-);
+-- CREATE TABLE semaines (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     semaine INT NOT NULL UNIQUE
+-- );
 
 -- Table des emplois du temps
 CREATE TABLE emplois_du_temps (
@@ -109,21 +109,22 @@ CREATE TABLE emplois_du_temps (
     salle_id INT,
     jour ENUM('Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi') NOT NULL,
     nature ENUM('Cours','TD','TP') NOT NULL,
-    semaine_debut_id INT,
-    semaine_fin_id INT,
+    semestre ENUM('1','2','3','4','5','6') NOT NULL,
+    semaine_debut ENUM('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20') NOT NULL,
+    semaine_fin ENUM('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20') NOT NULL,
     creneau_id INT,
-    group_id INT,
-    semestre_id INT,
-    FOREIGN KEY (semestre_id) REFERENCES semestres(id) ON DELETE CASCADE,
+    groupe_id ENUM('Gr1','Gr2','Gr3','Gr4','Gr1-1','Gr1-2','Gr1-3','Gr2-1','Gr2-2','Gr2-3','Gr3-1','Gr3-2','Gr3-3') NOT NULL,
+    -- semestre_id INT,
+    -- FOREIGN KEY (semestre_id) REFERENCES semestres(id) ON DELETE CASCADE,
     FOREIGN KEY (prof_id) REFERENCES professeurs(id) ON DELETE SET NULL,
     FOREIGN KEY (module_id) REFERENCES modules(id) ON DELETE CASCADE,
     FOREIGN KEY (element_id) REFERENCES elements(id) ON DELETE CASCADE,
     FOREIGN KEY (filiere_id) REFERENCES filiere(id) ON DELETE CASCADE,
     FOREIGN KEY (salle_id) REFERENCES salles(id) ON DELETE CASCADE,
-    FOREIGN KEY (semaine_debut_id) REFERENCES semaines(id) ON DELETE CASCADE,
-    FOREIGN KEY (semaine_fin_id) REFERENCES semaines(id) ON DELETE CASCADE,
+    -- FOREIGN KEY (semaine_debut_id) REFERENCES semaines(id) ON DELETE CASCADE,
+    -- FOREIGN KEY (semaine_fin_id) REFERENCES semaines(id) ON DELETE CASCADE,
     FOREIGN KEY (creneau_id) REFERENCES creneaux(id) ON DELETE CASCADE,
-    FOREIGN KEY (groupe_id) REFERENCES groupes(id) ON DELETE CASCADE
+    -- FOREIGN KEY (groupe_id) REFERENCES groupes(id) ON DELETE CASCADE
 );
 
 -- Insertion des créneaux horaires
@@ -136,11 +137,11 @@ INSERT INTO creneaux (heure_debut, heure_fin) VALUES
 ('14:30:00', '18:30:00');
 
 -- Insertion des semaines ("semaine1" à "semaine20")
-INSERT INTO semaines (semaine) VALUES
-('1'), ('2'), ('3'), ('4'), ('5'), 
-('6'), ('7'), ('8'), ('9'), ('10'), 
-('11'), ('12'), ('13'), ('14'), ('15'),
-('16'), ('17'), ('18'), ('19'), ('20');
+-- INSERT INTO semaines (semaine) VALUES
+-- ('1'), ('2'), ('3'), ('4'), ('5'), 
+-- ('6'), ('7'), ('8'), ('9'), ('10'), 
+-- ('11'), ('12'), ('13'), ('14'), ('15'),
+-- ('16'), ('17'), ('18'), ('19'), ('20');
 
 INSERT INTO salles (nom, capacite, nb_exam) VALUES
 ('Amphi', 320, 90),
@@ -206,106 +207,23 @@ INSERT INTO salle_equipements (salle_id, equipement_id) VALUES
 (29,1),
 (30,1);
 
-INSERT INTO groupes (label) VALUES
-("Gr1"),
-("Gr2"),
-("Gr3"),
-("Gr4"),
-("Gr1.1"),
-("Gr1.2"),
-("Gr1.3"),
-("Gr2.1"),
-("Gr2.2"),
-("Gr2.3"),
-("Gr3.1"),
-("Gr3.2"),
-("Gr3.3");
+-- INSERT INTO groupes (label) VALUES
+-- ("Gr1"),
+-- ("Gr2"),
+-- ("Gr3"),
+-- ("Gr4"),
+-- ("Gr1.1"),
+-- ("Gr1.2"),
+-- ("Gr1.3"),
+-- ("Gr2.1"),
+-- ("Gr2.2"),
+-- ("Gr2.3"),
+-- ("Gr3.1"),
+-- ("Gr3.2"),
+-- ("Gr3.3");
 
-INSERT INTO filiere (nom, abrv, departement_id, prof_id) VALUES
-('1ère année Cycle Ingénieur - Filière Genie du developpement numerique et Cybersecurite', 'GDNC-1',1,39),
-('1ère année Cycle Ingénieur - Filière Ingénierie en Science de Données et Intelligence Artificielle', 'ISDIA-1',1,30),
-('1ère année Cycle Ingénieur - Filière Génie Informatique', 'GINFO-1',1, 28),
-('1ère année Cycle Ingénieur - Filière Génie Mécanique','GM-1', 2, 32),
-('1ère année Cycle Ingénieur - Filière Génie Energétique et systèmes intelligents','GESI-1', 2, 8),
-('1ère année Cycle Ingénieur - Filière Génie Mécatronique','GMT-1', 2, 49),
-('1ère année Cycle Ingénieur - Filière Génie Industriel','GINDUS-1', 2, 34),
-('1ère année Cycle Ingénieur - Filière Génie des Systèmes communicants et sécurité informatique','GSCSI-1', 3, 24),
-('1ère année Cycle Ingénieur - Filière Ingénierie Informatique, Intelligence Artificielle et Confiance Numérique','3IACN-1', 3, 3),
-('1ère année Cycle Ingénieur - Filière Ingénierie des Systèmes Embarqués et Intelligence Artificielle','ISEIA-1', 4, 22),
-('1ère année Cycle Ingénieur - Filière Ingénierie Logicielle et Intelligence Artificielle', 'ILIA-1',4, 9),
 
-('2ème année Cycle Ingénieur - Filière Genie du developpement numerique et Cybersecurite', 'GDNC-2',1,39),
-('2ème année Cycle Ingénieur - Filière Ingénierie en Science de Données et Intelligence Artificielle', 'ISDIA-2',1,30),
-('2ème année Cycle Ingénieur - Filière Génie Informatique', 'GINFO-2',1, 28),
-('2ème année Cycle Ingénieur - Filière Génie Mécanique','GM-2', 2, 32),
-('2ème année Cycle Ingénieur - Filière Génie Energétique et systèmes intelligents','GESI-2', 2, 8),
-('2ème année Cycle Ingénieur - Filière Génie Mécatronique','GMT-2', 2, 49),
-('2ème année Cycle Ingénieur - Filière Génie Industriel','GINDUS-2', 2, 34),
-('2ème année Cycle Ingénieur - Filière Génie des Systèmes communicants et sécurité informatique','GSCSI-2', 3, 24),
-('2ème année Cycle Ingénieur - Filière Ingénierie Informatique, Intelligence Artificielle et Confiance Numérique','3IACN-2', 3, 3),
-('2ème année Cycle Ingénieur - Filière Ingénierie des Systèmes Embarqués et Intelligence Artificielle','ISEIA-2', 4, 22),
-('2ème année Cycle Ingénieur - Filière Ingénierie Logicielle et Intelligence Artificielle', 'ILIA-2',4, 9),
-
-('3ème année Cycle Ingénieur - Filière Genie du developpement numerique et Cybersecurite', 'GDNC-3',1,39),
-('3ème année Cycle Ingénieur - Filière Ingénierie en Science de Données et Intelligence Artificielle', 'ISDIA-3',1,30),
-('3ème année Cycle Ingénieur - Filière Génie Informatique', 'GINFO-3',1, 28),
-('3ème année Cycle Ingénieur - Filière Génie Mécanique','GM-3', 2, 32),
-('3ème année Cycle Ingénieur - Filière Génie Energétique et systèmes intelligents','GESI-3', 2, 8),
-('3ème année Cycle Ingénieur - Filière Génie Mécatronique','GMT-3', 2, 49),
-('3ème année Cycle Ingénieur - Filière Génie Industriel','GINDUS-3', 2, 34),
-('3ème année Cycle Ingénieur - Filière Génie des Systèmes communicants et sécurité informatique','GSCSI-3', 3, 24),
-('3ème année Cycle Ingénieur - Filière Ingénierie Informatique, Intelligence Artificielle et Confiance Numérique','3IACN-3', 3, 3),
-('3ème année Cycle Ingénieur - Filière Ingénierie des Systèmes Embarqués et Intelligence Artificielle','ISEIA-3', 4, 22),
-('3ème année Cycle Ingénieur - Filière Ingénierie Logicielle et Intelligence Artificielle', 'ILIA-3',4, 9),
-
-('1ère année Cycle préparatoire SECTION A','CP1-SA', 5, 31),
-('1ère année Cycle préparatoire SECTION B','CP1-SB', 5, 31),
-('1ère année Cycle préparatoire SECTION C','CP1-SC', 5, 31),
-('2ème année Cycle préparatoire','CP2', 5, 31);
-
-INSERT INTO semestres (nom, annee, filiere_id) VALUES
-('S1', 1, 1), ('S2', 1, 1),
-('S1', 1, 2), ('S2', 1, 2),
-('S1', 1, 3), ('S2', 1, 3),
-('S1', 1, 4), ('S2', 1, 4),
-('S1', 1, 5), ('S2', 1, 5),
-('S1', 1, 6), ('S2', 1, 6),
-('S1', 1, 7), ('S2', 1, 7),
-('S1', 1, 8), ('S2', 1, 8),
-('S1', 1, 9), ('S2', 1, 9),
-('S1', 1, 10), ('S2', 1, 10),
-('S1', 1, 11), ('S2', 1, 11),
-
-('S3', 2, 12), ('S4', 1, 12),
-('S3', 2, 13), ('S4', 1, 13),
-('S3', 2, 14), ('S4', 1, 14),
-('S3', 2, 15), ('S4', 1, 15),
-('S3', 2, 16), ('S4', 1, 16),
-('S3', 2, 17), ('S4', 1, 17),
-('S3', 2, 18), ('S4', 1, 18),
-('S3', 2, 19), ('S4', 1, 19),
-('S3', 2, 20), ('S4', 1, 20),
-('S3', 2, 21), ('S4', 1, 21),
-('S3', 2, 22), ('S4', 1, 22),
-
-('S5', 3, 23), ('S6', 3, 23),
-('S5', 3, 24), ('S6', 3, 24),
-('S5', 3, 25), ('S6', 3, 25),
-('S5', 3, 26), ('S6', 3, 26),
-('S5', 3, 27), ('S6', 3, 27),
-('S5', 3, 28), ('S6', 3, 28),
-('S5', 3, 29), ('S6', 3, 29),
-('S5', 3, 30), ('S6', 3, 30),
-('S5', 3, 31), ('S6', 3, 31),
-('S5', 3, 32), ('S6', 3, 32),
-('S5', 3, 33), ('S6', 3, 33),
-
-('S1', 1, 34), ('S2', 1, 23),
-('S1', 1, 35), ('S2', 1, 24),
-('S1', 1, 36), ('S2', 1, 25),
-('S3', 2, 37), ('S4', 2, 26);
-
-INSERT INTO departement(nom,abrv,prof_id)VALUES
+INSERT INTO departement(nom,abrv)VALUES
 ('Génie électrique et informatique','GEI'),
 ('Génie Industriel', 'GIND'),
 ('Sciences de Données et Systèmes Communicants','SDSC'),
@@ -389,3 +307,87 @@ INSERT INTO professeurs (nom, prenom, email, telephone) VALUES
 ('TOUZANI', 'Hajar', '', ''),
 ('YAKINE', 'Fadoua', '', ''),
 ('ELBDOURI', 'Abdelali ', '', '');
+
+INSERT INTO filiere (nom, abrv, departement_id, prof_id) VALUES
+('1ère année Cycle Ingénieur - Filière Genie du developpement numerique et Cybersecurite', 'GDNC-1',1,39),
+('1ère année Cycle Ingénieur - Filière Ingénierie en Science de Données et Intelligence Artificielle', 'ISDIA-1',1,30),
+('1ère année Cycle Ingénieur - Filière Génie Informatique', 'GINFO-1',1, 28),
+('1ère année Cycle Ingénieur - Filière Génie Mécanique','GM-1', 2, 32),
+('1ère année Cycle Ingénieur - Filière Génie Energétique et systèmes intelligents','GESI-1', 2, 8),
+('1ère année Cycle Ingénieur - Filière Génie Mécatronique','GMT-1', 2, 49),
+('1ère année Cycle Ingénieur - Filière Génie Industriel','GINDUS-1', 2, 34),
+('1ère année Cycle Ingénieur - Filière Génie des Systèmes communicants et sécurité informatique','GSCSI-1', 3, 24),
+('1ère année Cycle Ingénieur - Filière Ingénierie Informatique, Intelligence Artificielle et Confiance Numérique','3IACN-1', 3, 3),
+('1ère année Cycle Ingénieur - Filière Ingénierie des Systèmes Embarqués et Intelligence Artificielle','ISEIA-1', 4, 22),
+('1ère année Cycle Ingénieur - Filière Ingénierie Logicielle et Intelligence Artificielle', 'ILIA-1',4, 9),
+
+('2ème année Cycle Ingénieur - Filière Genie du developpement numerique et Cybersecurite', 'GDNC-2',1,39),
+('2ème année Cycle Ingénieur - Filière Ingénierie en Science de Données et Intelligence Artificielle', 'ISDIA-2',1,30),
+('2ème année Cycle Ingénieur - Filière Génie Informatique', 'GINFO-2',1, 28),
+('2ème année Cycle Ingénieur - Filière Génie Mécanique','GM-2', 2, 32),
+('2ème année Cycle Ingénieur - Filière Génie Energétique et systèmes intelligents','GESI-2', 2, 8),
+('2ème année Cycle Ingénieur - Filière Génie Mécatronique','GMT-2', 2, 49),
+('2ème année Cycle Ingénieur - Filière Génie Industriel','GINDUS-2', 2, 34),
+('2ème année Cycle Ingénieur - Filière Génie des Systèmes communicants et sécurité informatique','GSCSI-2', 3, 24),
+('2ème année Cycle Ingénieur - Filière Ingénierie Informatique, Intelligence Artificielle et Confiance Numérique','3IACN-2', 3, 3),
+('2ème année Cycle Ingénieur - Filière Ingénierie des Systèmes Embarqués et Intelligence Artificielle','ISEIA-2', 4, 22),
+('2ème année Cycle Ingénieur - Filière Ingénierie Logicielle et Intelligence Artificielle', 'ILIA-2',4, 9),
+
+('3ème année Cycle Ingénieur - Filière Genie du developpement numerique et Cybersecurite', 'GDNC-3',1,39),
+('3ème année Cycle Ingénieur - Filière Ingénierie en Science de Données et Intelligence Artificielle', 'ISDIA-3',1,30),
+('3ème année Cycle Ingénieur - Filière Génie Informatique', 'GINFO-3',1, 28),
+('3ème année Cycle Ingénieur - Filière Génie Mécanique','GM-3', 2, 32),
+('3ème année Cycle Ingénieur - Filière Génie Energétique et systèmes intelligents','GESI-3', 2, 8),
+('3ème année Cycle Ingénieur - Filière Génie Mécatronique','GMT-3', 2, 49),
+('3ème année Cycle Ingénieur - Filière Génie Industriel','GINDUS-3', 2, 34),
+('3ème année Cycle Ingénieur - Filière Génie des Systèmes communicants et sécurité informatique','GSCSI-3', 3, 24),
+('3ème année Cycle Ingénieur - Filière Ingénierie Informatique, Intelligence Artificielle et Confiance Numérique','3IACN-3', 3, 3),
+('3ème année Cycle Ingénieur - Filière Ingénierie des Systèmes Embarqués et Intelligence Artificielle','ISEIA-3', 4, 22),
+('3ème année Cycle Ingénieur - Filière Ingénierie Logicielle et Intelligence Artificielle', 'ILIA-3',4, 9),
+
+('1ère année Cycle préparatoire SECTION A','CP1-SA', 5, 31),
+('1ère année Cycle préparatoire SECTION B','CP1-SB', 5, 31),
+('1ère année Cycle préparatoire SECTION C','CP1-SC', 5, 31),
+('2ème année Cycle préparatoire','CP2', 5, 31);
+
+-- INSERT INTO semestres (nom, annee, filiere_id) VALUES
+-- ('S1', 1, 1), ('S2', 1, 1),
+-- ('S1', 1, 2), ('S2', 1, 2),
+-- ('S1', 1, 3), ('S2', 1, 3),
+-- ('S1', 1, 4), ('S2', 1, 4),
+-- ('S1', 1, 5), ('S2', 1, 5),
+-- ('S1', 1, 6), ('S2', 1, 6),
+-- ('S1', 1, 7), ('S2', 1, 7),
+-- ('S1', 1, 8), ('S2', 1, 8),
+-- ('S1', 1, 9), ('S2', 1, 9),
+-- ('S1', 1, 10), ('S2', 1, 10),
+-- ('S1', 1, 11), ('S2', 1, 11),
+
+-- ('S3', 2, 12), ('S4', 1, 12),
+-- ('S3', 2, 13), ('S4', 1, 13),
+-- ('S3', 2, 14), ('S4', 1, 14),
+-- ('S3', 2, 15), ('S4', 1, 15),
+-- ('S3', 2, 16), ('S4', 1, 16),
+-- ('S3', 2, 17), ('S4', 1, 17),
+-- ('S3', 2, 18), ('S4', 1, 18),
+-- ('S3', 2, 19), ('S4', 1, 19),
+-- ('S3', 2, 20), ('S4', 1, 20),
+-- ('S3', 2, 21), ('S4', 1, 21),
+-- ('S3', 2, 22), ('S4', 1, 22),
+
+-- ('S5', 3, 23), ('S6', 3, 23),
+-- ('S5', 3, 24), ('S6', 3, 24),
+-- ('S5', 3, 25), ('S6', 3, 25),
+-- ('S5', 3, 26), ('S6', 3, 26),
+-- ('S5', 3, 27), ('S6', 3, 27),
+-- ('S5', 3, 28), ('S6', 3, 28),
+-- ('S5', 3, 29), ('S6', 3, 29),
+-- ('S5', 3, 30), ('S6', 3, 30),
+-- ('S5', 3, 31), ('S6', 3, 31),
+-- ('S5', 3, 32), ('S6', 3, 32),
+-- ('S5', 3, 33), ('S6', 3, 33),
+
+-- ('S1', 1, 34), ('S2', 1, 23),
+-- ('S1', 1, 35), ('S2', 1, 24),
+-- ('S1', 1, 36), ('S2', 1, 25),
+-- ('S3', 2, 37), ('S4', 2, 26);

@@ -1,6 +1,6 @@
 <?php
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'gestion_emploi');
+define('DB_NAME', 'gdb_edt');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 

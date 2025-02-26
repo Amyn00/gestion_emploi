@@ -13,31 +13,39 @@ $offset = ($page - 1) * $limit;
 
 // Construire la requête SQL avec les filtres
 $query = "SELECT 
-    e.id, 
+    e.id,
+    f.abrv AS Filiere,
+    m.code AS code, 
+    el.nom AS element_nom,
     p.nom AS prof_nom, p.prenom AS prof_prenom,
-    f.nom AS nom_filiere,
-    m.code AS code_module, 
-    el.nom AS element_nom,  
-    e.jour, 
+    e.jour,
     c.heure_debut, c.heure_fin,
-    e.semaine_debut_id AS semaine_debut,
-    e.semaine_fin_id AS semaine_fin,
+    e.semaine_debut, e.semaine_fin,
     s.nom AS salle
-FROM emplois_du_temps e
-JOIN professeurs p ON e.prof_id = p.id
-JOIN elements el ON e.element_id = el.id
-JOIN salles s ON e.salle_id = s.id
-JOIN creneaux c ON e.creneau_id = c.id
-JOIN modules m ON e.module_id = m.id
-JOIN filiere f ON e.filiere_id = f.id
-ORDER BY nom_filiere AND e.jour"; 
+    FROM emplois_du_temps e
+    JOIN professeurs p ON e.prof_id = p.id
+    JOIN elements el ON e.element_id = el.id
+    JOIN salles s ON e.salle_id = s.id
+    JOIN creneaux c ON e.creneau_id = c.id
+    JOIN modules m ON e.module_id = m.id
+    JOIN filiere f ON e.filiere_id = f.id
+    ORDER BY Filiere AND e.jour"; 
 
 if ($prof_id) $query .= " AND e.prof_id = $prof_id";
 if ($filiere_id) $query .= " AND e.filiere_id = $filiere_id";
 if ($salle_id) $query .= " AND e.salle_id = $salle_id";
 
 // Récupérer le nombre total d'emplois (pour la pagination)
-$count_query = str_replace("SELECT e.id, p.nom AS prof_nom, p.prenom AS prof_prenom, f.nom AS nom_filiere, m.code AS code_module, el.nom AS element_nom, e.jour, c.heure_debut, c.heure_fin, e.semaine_debut_id AS semaine_debut, e.semaine_fin_id AS semaine_fin, s.nom AS salle", "SELECT COUNT(*) AS total", $query);
+$count_query = str_replace("SELECT e.id, 
+    p.nom AS prof_nom, 
+    p.prenom AS prof_prenom, 
+    f.nom AS nom_filiere, 
+    m.code AS code_module, 
+    el.nom AS element_nom, 
+    e.jour, 
+    c.heure_debut, c.heure_fin, 
+    e.semaine_debut, e.semaine_fin, 
+    s.nom AS salle", "SELECT COUNT(*) AS total", $query);
 $total_emplois = $pdo->query($count_query)->fetchColumn();
 
 $query .= " LIMIT $limit OFFSET $offset";
@@ -82,7 +90,7 @@ $salles = $pdo->query("SELECT * FROM salles")->fetchAll();
                 <option value="">-- Toutes --</option>
                 <?php foreach ($filieres as $filiere): ?>
                     <option value="<?= $filiere['id'] ?>" <?= ($filiere_id == $filiere['id']) ? 'selected' : '' ?>>
-                        <?= $filiere['nom'] ?>
+                        <?= $filiere['abrv'] ?>
                     </option>
                 <?php endforeach; ?>
             </select>
@@ -121,10 +129,10 @@ $salles = $pdo->query("SELECT * FROM salles")->fetchAll();
         <table class="table table-striped table-hover">
             <thead class="table-dark">
                 <tr>
-                    <th>Professeur</th>
                     <th>Filière</th>
-                    <th>Module</th>
+                    <th>Code</th>
                     <th>Élément</th>
+                    <th>Professeur</th>
                     <th>Jour</th>
                     <th>Créneau</th>
                     <th>Semaine</th>
@@ -135,13 +143,13 @@ $salles = $pdo->query("SELECT * FROM salles")->fetchAll();
             <tbody>
                 <?php foreach ($emplois as $emploi): ?>
                     <tr>
-                        <td><?= $emploi['prof_nom'] ?> <?= $emploi['prof_prenom'] ?></td>
-                        <td><?= $emploi['nom_filiere'] ?></td>
-                        <td><?= $emploi['code_module'] ?></td>
+                        <td><?= $emploi['Filiere'] ?></td>
+                        <td><?= $emploi['code'] ?></td>
                         <td><?= $emploi['element_nom'] ?></td>
+                        <td><?= $emploi['prof_nom'] ?> <?= $emploi['prof_prenom'] ?></td>
                         <td><?= $emploi['jour'] ?></td>
-                        <td><?= $emploi['heure_debut'] ?> - <?= $emploi['heure_fin'] ?></td>
-                        <td><?= $emploi['semaine_debut'] ?> - <?= $emploi['semaine_fin'] ?></td>
+                        <td><?= $emploi['heure_debut'] ?>-<?= $emploi['heure_fin'] ?></td>
+                        <td>SE<?= $emploi['semaine_debut'] ?>-SE<?= $emploi['semaine_fin'] ?></td>
                         <td><?= $emploi['salle'] ?></td>
                         <td>
                             <a href="edit_emploi.php?id=<?= $emploi['id'] ?>" class="btn btn-warning btn-sm">
