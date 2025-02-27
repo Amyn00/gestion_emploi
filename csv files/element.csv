@@ -1,0 +1,265 @@
+;Programmation Orientée Objet (POO) en C++;1
+;Principes fondamentaux des réseaux;2
+;Théorie des Systèmes d'Exploitation et Programmation Système;3
+;Système d'Information;4
+; Bases de Données;4
+;Algèbre Linéaire;5
+;ANGLAIS;6
+;FRANÇAIS;6
+;Compétences Culturelles et Artistiques;7
+;TECHNOLOGIES SANS FILS ET COMMUNICATIONS MOBILES;8
+;CYBERSECURITE;9
+;Français;10
+;Anglais;10
+;RESEAUX DE COMMUNICATION AVANCES;11
+;MATHEMATIQUE POUR LA CYBERSECURITE;12
+;BASE DE DONNEES AVANCEES;13
+;Digital Skills;14
+;PROGRAMMATION ORIENTEE OBJET C++;15
+;PRINCIPES FONDAMENTAUX DES RESEAUX;16
+;BASES DE DONNEES RELATIONNELLES;17
+;THEORIE ET PROGRAMMATION SYSTEME  ;18
+;ANALYSE DES DONNEES ET STATISTIQUE EXPLORATOIRE;19
+;ANGLAIS;20
+;FRANÇAIS;20
+;CULTURE AND ART SKILLS  ;21
+;PROGRAMMATION ORIENTEE OBJET JAVA;22
+;PYTHON POUR DATA SCIENCE;23
+;MODELISATION UML ET GENIE LOGICIEL;24
+;CYBERSECURITE;25
+;RECHERCHE OPERATIONNELLE ET THEORIE DES GRAPHES;26
+;Français;27
+;Anglais;27
+;Digital Skills;28
+;Automatique des systèmes;43
+;Construction mécanique;44
+;RESISTANCES DES MATERIAUX;45
+;Element Outil de Calcule;46
+;Element Outil de simulation;46
+;Science des matériaux : approche chimique ;47
+;Science des matériaux : approche mécanique ;47
+;VBA;48
+;Power BI ;48
+;Anglais;49
+;Français;49
+;MECANIQUE DES MILIEUX CONTINUS (SOLIDE ET FLUIDE);50
+;CONCEPTION DES SYSTEMES MECANIQUES;51
+;Microcontreuleur;52
+;Robotique;52
+;Arts et Culture;53
+;MECANIQUE DES FLUIDES;54
+;PROGRAMMATION AVANCEE;55
+;Anglais;56
+;Français;56
+;OUTILS DE CALCUL;57
+;SIMULATION;57
+;Transferts de chaleur et de masse;58
+;AUTOMATIQUE DES SYSTEMES LINEAIRES;59
+;TRAITEMENT DU SIGNAL;59
+;Machines électriques;60
+;Matériaux;61
+;Mécanique des fluides;61
+;Langues Anglaise;62
+;Langues française;62
+;VISUAL BASIC ET EXCEL;63
+;POWER BI;63
+;Combustion Industrielle;64
+;THERMODYNAMIQUE DES MELANGES;64
+;HYDRAULIQUE INDUSTRIELLE;65
+;Electronique;66
+;Commande Avancees;66
+;Electronique;66
+;SIMULATION DES SYSTEMES MULTIPHYSIQUES;67
+;API;68
+;Microcontroleurs;68
+;Anglais;69
+;Français;69
+;Arts et Culture;70
+;MICROCONTROLEURS;71
+;ÉLECTRONIQUE NUMÉRIQUE;71
+;Conception Assistée par Ordinateur (CAO);72
+;Construction Mécanique;72
+;Traitement du Signal Analogique;73
+;Traitement du Signal Numérique;73
+;Propriétés et choix de matériaux;74
+;RDM;74
+;OUTILS DE CALCUL;75
+;OUTILS DE SIMULATION;75
+;Langue Anglaise;76
+;POWER BI;77
+;BASE DE DONNEES;77
+;HYDRAULIQUE INDUSTRIELLE;78
+;Methodologie Bond Graphs;79
+;Representation unifiée des systemes et analyse lagrangienne;79
+;Français;80
+;Anglais;80
+;Arts et Culture;81
+;RÉGULATION INDUSTRIELLE;82
+;Recherche Operationnelle;83
+;Optimisation;83
+;ELECTRONIQUE NON LINEARE;84
+;PROGRAMMATION ORIENTEE OBJET ;29
+;RINCIPES FONDAMENTAUX DES RESEAUX ;30
+;SYSTEME D'INFORMATION ET BASES DE DONNEES ;31
+;THEORIE ET PROGRAMMATION SYSTÈME;32
+;ANALYSE POUR L'INGENIEUR ET TRANSFORMEES INTEGRALES ;33
+;Anglais 3;34
+;FRANÇAIS;34
+;CULTURE AND ART SKILLS;35
+;RESEAUX DE COMMUNICATION AVANCES;36
+;Français;37
+;ANGLAIS;37
+;RECHERCHE OPERATIONNELLE ET THEORIE DES GRAPHES;38
+;Digital Skills;39
+;ADMINISTRATION DES SYSTEMES DE GESTION DE BASES DE DONNEES RELATIONNELLES ET OBJETS;40
+;DEVELOPPEMENT WEB;41
+;Modelisation Orientée Objet;42
+;Développement JAVA;42
+;Processus stochastique;85
+;optimisation;85
+;Dessin Technique;86
+;Eléments de machines;86
+;machines thermiques;87
+;Transferts thermiques;87
+;Programmation instrumentale;88
+;Robotique;88
+;Analyse et conception d’un système d’information et base de données;89
+;Anglais;90
+;Français;90
+;Visual Basic et Excel;91
+;Power BI;91
+;RECHERCHE OPERATIONNELLE;92
+;Anglais;93
+;Français;93
+;CAO;94
+;Calcul Mécanique;94
+;Arts et Culture;95
+;Electrotechnique et Electronique de puissance;96
+;HYDRAULIQUE ET PNEUMATIQUE;97
+;LEAN MANUFATURING;98
+;SYSTEMES DE PRODUCTION;98
+;Fondements de réseaux;99
+;systèmes d’exploitation;99
+;Statistique inférentielle;100
+;Programmation orientée objet en JAVA;101
+;complexité;101
+;Systèmes d’Information;102
+;Bases de données;102
+;Fondements de l’IA;103
+;UML1;103
+;Langue française;104
+;English for Engineering;104
+;Compétences digitales;105
+;ADMINISTRATION RESEAU ET SYSTEME;106
+;TECHNOLOGIES WEB;107
+;API JAVA;108
+;Arts et Culture;109
+;Langue Française;110
+;ANGLAIS;110
+;CRYPTOGRAPHIE;111
+;SERVICES RESEAUX;111
+;PYTHON;112
+;ntroduction au réseau de neurones artificiels.;112
+;Fondements de réseaux;113
+;systèmes d’exploitation;113
+;Statistique inférentielle;114
+;Programmation orientée objet en JAVA;115
+;complexité;115
+;Systèmes d’Information;116
+;Bases de données;116
+;Fondements de l’IA;117
+;UML1;117
+;English for Engineering;118
+;Langue française;118
+;Compétences digitales;119
+;PYTHON;120
+;ntroduction au réseau de neurones artificiels.;120
+;API JAVA;121
+;Langue Française;122
+;ANGLAIS;122
+;Arts et Culture;123
+;ADMINISTRATION RESEAU ET SYSTEME;124
+;SERVICES RESEAUX;125
+;CRYPTOGRAPHIE;125
+;TECHNOLOGIES WEB;126
+;Programmation Orientée Objet Java;141
+;Administration LINUX;142
+;Réseaux;142
+;Frontend Web avec Angular;143
+;Développement Mobile avec Android;143
+;Microprocesseurs;144
+;Statistiques Descriptives;145
+;Probabilités Avancées;145
+;Langue Française;146
+;English for Engineering;146
+;Compétences numériques et informatique;147
+;SYSTEMES D’INFORMATION ET BASES DE DONNEES;148
+;TECHNOLOGIES WEB BACKEND;149
+;PYTHON ET FRAMEWORKS IA;150
+;Arts et Culture;151
+;Langue Anglaise;152
+;Langue française;152
+;STATISTIQUES INFERENTIELLES ET PROCESSUS STOCHASTIQUES;153
+;TRAITEMENT DE SIGNAL;154
+;administration LINUX;127
+;Réseaux;127
+;POO;128
+;Java;128
+;Mathématiques pour l'ingénieur;129
+;Microprocesseur;130
+;Analogique;131
+;Numerique;131
+;TEC1;132
+;Anglais;132
+;ROS 2;133
+;Python / Initiation à Rust ;133
+;Conception assistée par ordinateur;133
+;BASE DE DONNEES ET DEVELOPPEMENT WEB;134
+;INSTRUMENTATION INDUSTRIELLE;135
+;API;135
+;Langue Anglaise;136
+;Langue française;136
+;Arts et Culture;137
+;TRAITEMENT DE SIGNAL;138
+;ELECTRONIQUE DE PUISSANCE;139
+;MACHINES ELECTRIQUES;139
+;TECHNIQUES D'OPTIMISATION EN INTELLIGENCE ARTIFICIELLE;140
+;Algèbre 1;155
+;Mécanique du point matériel ;156
+;Electronique Analogique;157
+;Electronique numérique;157
+;Analyse 1  ;158
+;Algorithmique;159
+;INFORMATIQUE 1;159
+;Anglais;160
+;Française;160
+;Powerskills;161
+;Electrostatique;162
+;Magnétostatique;162
+;CHIMIE GENERALE;163
+;DESSIN INDUSTRIEL;164
+;DIGITAL SKILLS INTRODUCTION A LA PROGRAMMATION C;165
+;ANALYSE 2;166
+;ALGEBRE 2;167
+;Anglais 2;168
+;Français 2;168
+;ALGEBRE III;197
+;ANALYSE III;198
+;STATIQUE DU FLUIDE;199
+;THERMODYNAMIQUE ;199
+;MECANIQUE DU SOLIDE;200
+;DAO;200
+;Programmation en C;201
+;Anglais 3;202
+;TEC III;202
+;Analyse 4;203
+;Algèbre 4;204
+;Probabilités & Statistiques descriptives;204
+;Introduction aux systèmes d’exploitation;205
+;Structures de données en C;205
+;Electronique analogique;206
+;Electronique numérique;206
+;Education relative à l’environnement et développement durable;207
+;Droit de l’environnement;207
+;Anglais 3;208
+;Espagnol;208
